@@ -27,7 +27,7 @@ class Repo:
         target = self.path(relative)
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True),
-                          encoding="utf-8")
+                          encoding="utf-8", newline="\n")
 
     def edit(self, relative: str, func) -> None:
         data = self.load(relative)
@@ -37,7 +37,7 @@ class Repo:
     def write(self, relative: str, text: str) -> None:
         target = self.path(relative)
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(text, encoding="utf-8")
+        target.write_text(text, encoding="utf-8", newline="\n")
 
 
 @pytest.fixture

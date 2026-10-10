@@ -34,7 +34,7 @@ def test_yamllint_error_fails(repo, capsys):
 
 
 def test_missing_yamllint_reported(repo, monkeypatch):
-    monkeypatch.setattr(validate.shutil, "which", lambda _: None)
+    monkeypatch.setattr(validate.importlib.util, "find_spec", lambda _: None)
     (p,) = validate.run_yamllint(repo.root)
     assert "not installed" in p.message
 

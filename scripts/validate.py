@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import shutil
+import importlib.util
 import subprocess
 import sys
 from pathlib import Path
@@ -24,15 +24,17 @@ CHECKS = [
 
 
 def run_yamllint(root: Path) -> list[Problem]:
-    exe = shutil.which("yamllint")
-    if exe is None:
+    # Run as "python -m yamllint" so it works when the Scripts folder is not on PATH
+    # (common with the Microsoft Store Python on Windows).
+    if importlib.util.find_spec("yamllint") is None:
         return [Problem("(yamllint)", "tool", "yamllint is not installed",
-                        "python3 -m pip install -r requirements-dev.txt")]
+                        "python -m pip install -r requirements-dev.txt")]
     targets = [d for d in ("knowledge", "skill", "evals", ".github") if (root / d).exists()]
     config = root / ".yamllint"
     if not config.exists():  # fixtures use the repo's config
         config = REPO_ROOT / ".yamllint"
-    out = subprocess.run([exe, "-c", str(config), "-f", "parsable", *targets], cwd=root,
+    cmd = [sys.executable, "-m", "yamllint", "-c", str(config), "-f", "parsable", *targets]
+    out = subprocess.run(cmd, cwd=root,
                          capture_output=True, text=True)
     problems = []
     for line in out.stdout.splitlines():
