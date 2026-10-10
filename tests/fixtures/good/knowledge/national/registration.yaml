@@ -1,0 +1,23 @@
+schema: 1
+entries:
+  - id: de.registration.deadline
+    layer: national
+    scope: de
+    topic: registration
+    phase: 2
+    text: >-
+      Test fact. Register your address (Anmeldung = address registration)
+      within the number of days the test source states.
+    source_url: https://www.bund.example/registration
+    last_verified: 2026-10-01
+    reviewer: test-reviewer
+tasks:
+  - task_id: de.registration.book-appointment
+    phase: 2
+    title: Book a registration appointment
+    why: Test task. You need the registration for later steps.
+    due_offset_days: 7
+    depends_on: []
+    source_url: https://www.bund.example/registration
+    last_verified: 2026-10-01
+    reviewer: test-reviewer

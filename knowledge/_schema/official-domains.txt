@@ -1,0 +1,32 @@
+# Official source domains for pack entries (source_url).
+# One domain per line. Subdomains are allowed automatically (e.g. www.kiel.de matches kiel.de).
+# Add a domain only in a PR reviewed by a maintainer. Federal, state, city and university sites,
+# AStA, Studierendenwerk and public bodies only. Never blogs, forums, agencies or AI answers.
+
+# Federal
+bund.de
+bundesregierung.de
+auswaertiges-amt.de
+bamf.de
+bmbf.de
+bmi.bund.de
+bundesfinanzministerium.de
+arbeitsagentur.de
+make-it-in-germany.com
+gesetze-im-internet.de
+rundfunkbeitrag.de
+daad.de
+anabin.kmk.org
+deutschland.de
+diplo.de
+
+# Schleswig-Holstein
+schleswig-holstein.de
+
+# Kiel
+kiel.de
+
+# CAU Kiel
+uni-kiel.de
+asta.uni-kiel.de
+studentenwerk.sh

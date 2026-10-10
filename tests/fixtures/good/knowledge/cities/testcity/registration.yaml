@@ -1,0 +1,21 @@
+schema: 1
+entries:
+  - id: testcity.registration.office
+    layer: city
+    scope: testcity
+    topic: registration
+    phase: 2
+    text: Test fact. The test city office handles registration.
+    source_url: https://www.testcity.example/office
+    last_verified: 2026-10-01
+    reviewer: test-reviewer
+tasks:
+  - task_id: testcity.registration.visit-office
+    phase: 2
+    title: Go to your appointment
+    why: Test task that follows the national one.
+    due_offset_days: 14
+    depends_on: [de.registration.book-appointment]
+    source_url: https://www.testcity.example/office
+    last_verified: 2026-10-01
+    reviewer: test-reviewer

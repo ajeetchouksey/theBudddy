@@ -1,0 +1,43 @@
+name: Spike result
+description: Record one spike test result for a tool and plan.
+labels: ["area:skill"]
+body:
+  - type: input
+    id: test
+    attributes:
+      label: Test number
+      description: 1–21, see docs/mvp-1-plan.md
+    validations:
+      required: true
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Tool
+      options: [Gemini, Claude, Copilot]
+    validations:
+      required: true
+  - type: dropdown
+    id: plan
+    attributes:
+      label: Plan
+      options: [free, paid, education]
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options: ["yes", "no", "partial"]
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Screenshots or screen recording, date, device (web or phone). Test accounts only.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes and fallback needed

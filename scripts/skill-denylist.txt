@@ -1,0 +1,109 @@
+# Names that must never appear in skill/SKILL.md or skill/reference/intents/*.md (NFR-POR.2).
+# One name per line, matched as a whole word or phrase: case-insensitive, except all-caps
+# acronyms (KIT, CAU), which match case-sensitively so ordinary words like 'kit' pass.
+# Place knowledge belongs in knowledge/ packs; tool behaviour belongs in adapters.
+# Leave out cities whose names are common German words (e.g. Essen = food, Halle = hall).
+
+# AI tools and vendors
+Gemini
+Claude
+Copilot
+ChatGPT
+OpenAI
+Anthropic
+Bard
+Perplexity
+Gems
+
+# Federal states
+Schleswig-Holstein
+Hamburg
+Niedersachsen
+Lower Saxony
+Bremen
+Mecklenburg-Vorpommern
+Brandenburg
+Berlin
+Sachsen
+Saxony
+Sachsen-Anhalt
+Thüringen
+Thuringia
+Hessen
+Hesse
+Nordrhein-Westfalen
+North Rhine-Westphalia
+NRW
+Rheinland-Pfalz
+Rhineland-Palatinate
+Saarland
+Baden-Württemberg
+Bayern
+Bavaria
+
+# Cities
+Kiel
+Lübeck
+Flensburg
+München
+Munich
+Frankfurt
+Köln
+Cologne
+Stuttgart
+Düsseldorf
+Leipzig
+Dresden
+Hannover
+Hanover
+Nürnberg
+Nuremberg
+Dortmund
+Bonn
+Aachen
+Heidelberg
+Mannheim
+Karlsruhe
+Freiburg
+Münster
+Göttingen
+Darmstadt
+Erlangen
+Würzburg
+Jena
+Magdeburg
+Rostock
+Potsdam
+Mainz
+Kassel
+Bochum
+Duisburg
+Bielefeld
+Paderborn
+Ulm
+Augsburg
+Regensburg
+Passau
+Konstanz
+Tübingen
+Saarbrücken
+Chemnitz
+Ilmenau
+Siegen
+Kaiserslautern
+
+# Universities
+CAU
+Christian-Albrechts
+Kiel University
+TUM
+LMU
+RWTH
+KIT
+TU Berlin
+TU Dresden
+TU Darmstadt
+TU9
+Humboldt
+FU Berlin
+Fachhochschule Kiel

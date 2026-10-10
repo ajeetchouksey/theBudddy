@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ajeetchouksey/theBudddy/knowledge/_schema/latest.json",
+  "title": "latest.json",
+  "description": "Current versions and urgent notices, published to GitHub Pages (docs/technical-architecture.md, Versioning).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "skill", "template", "packs", "critical", "notes"],
+  "properties": {
+    "schema": { "const": 1 },
+    "skill": {
+      "description": "SemVer",
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?$"
+    },
+    "template": {
+      "description": "Major.minor",
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"
+    },
+    "packs": {
+      "description": "Pack version (date) per layer and scope, keyed '<layer>/<scope>'",
+      "type": "object",
+      "propertyNames": { "pattern": "^(national|state|city|university)/[a-z0-9][a-z0-9-]*$" },
+      "additionalProperties": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+    },
+    "critical": {
+      "description": "null, or an urgent notice shown before any related answer",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["message", "issued", "incident"],
+          "properties": {
+            "message": { "type": "string", "pattern": "^Important: ", "maxLength": 400 },
+            "issued": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+            "incident": { "type": "string", "pattern": "^https://[^\\s]+$" },
+            "entry_ids": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      ]
+    },
+    "notes": { "type": "string", "maxLength": 600 }
+  }
+}

@@ -1,0 +1,12 @@
+schema: 1
+entries:
+  - id: teststate.ticket.semester
+    layer: state
+    scope: teststate
+    topic: ticket
+    phase: 2
+    text: Test fact about a state ticket.
+    source_url: https://teststate.example/ticket
+    last_verified: 2026-09-15
+    reviewer: test-reviewer
+    expires: 2027-01-15

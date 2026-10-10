@@ -1,0 +1,25 @@
+[project]
+name = "germany-student-companion-tools"
+version = "0.0.0"
+description = "Build, validation and eval scripts for the Germany Student Companion"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["node_modules", "build"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["scripts"]
+omit = ["scripts/build.py", "scripts/run_evals.py"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true

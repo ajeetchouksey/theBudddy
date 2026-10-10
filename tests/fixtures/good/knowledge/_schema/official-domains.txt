@@ -1,0 +1,5 @@
+# Fixture allowlist: invented domains only.
+bund.example
+teststate.example
+testcity.example
+testuni.example

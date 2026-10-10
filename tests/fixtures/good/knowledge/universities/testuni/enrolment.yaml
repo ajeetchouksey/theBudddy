@@ -1,0 +1,11 @@
+schema: 1
+entries:
+  - id: testuni.enrolment.deadline
+    layer: university
+    scope: testuni
+    topic: enrolment
+    phase: 1
+    text: Test fact about enrolment at the test university.
+    source_url: https://testuni.example/enrolment
+    last_verified: 2026-10-01
+    reviewer: test-reviewer

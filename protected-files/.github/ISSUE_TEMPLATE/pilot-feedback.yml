@@ -1,0 +1,27 @@
+name: Pilot feedback
+description: Feedback from a pilot student (pseudonymised).
+labels: ["pilot-feedback"]
+body:
+  - type: dropdown
+    id: student
+    attributes:
+      label: Student code
+      options: [P01, P02, P03, P04, P05, P06, P07, P08, P09, P10]
+    validations:
+      required: true
+  - type: dropdown
+    id: tool
+    attributes:
+      label: AI tool
+      options: [Gemini, Claude, Copilot]
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: quote
+    attributes:
+      label: Quote in their words
+      description: Remove anything that could identify the student.
