@@ -73,6 +73,7 @@ evals/                      eval cases and results
 site/                       GitHub Pages: latest.json, setup page
 docs/                       design docs and docs/adr/
 .claude/skills/             developer skills (pack-author, ...)
+spike/                      week 1 spike kit: probe skill, Apps Script probe (throwaway)
 .github/                    workflows (validate, freshness, build-next), templates, Dependabot
 build/                      generated, not committed
 ```

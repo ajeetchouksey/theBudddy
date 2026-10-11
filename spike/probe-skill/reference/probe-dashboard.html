@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spike dashboard</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 16px; color: #1f2937; background: #fff; }
+  .card { border: 1px solid #d1d5db; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+  .bar { height: 14px; background: #2563eb; border-radius: 4px; }
+  .row { display: grid; grid-template-columns: 3em 1fr 4em; gap: 8px; align-items: center; margin: 6px 0; }
+  code { font-size: 1.1em; }
+</style>
+</head>
+<body>
+  <div class="card"><strong>Probe code:</strong> <code>PROBE-CANVAS-2K6R</code></div>
+  <div class="card">
+    <strong>Monthly spending (invented)</strong>
+    <div class="row"><span>Jul</span><div class="bar" style="width:79%"></div><span>€410</span></div>
+    <div class="row"><span>Aug</span><div class="bar" style="width:76%"></div><span>€395</span></div>
+    <div class="row"><span>Sep</span><div class="bar" style="width:100%"></div><span>€520</span></div>
+    <div class="row"><span>Oct</span><div class="bar" style="width:88%"></div><span>€460</span></div>
+  </div>
+</body>
+</html>
