@@ -1,0 +1,19 @@
+schema: 1
+id: de.letters.test-fee
+layer: national
+scope: de
+phase: 2
+name: Test fee letter (Testbeitrag)
+senders:
+  - name: Test Fee Office
+    domains: [bund.example]
+meaning: Test letter. It asks you to register for a test fee.
+deadline_rule: Within the number of days stated in the letter.
+next_step: Register on the official test site.
+if_missed: Test consequence.
+referral: Ask the test student union.
+scam_signs:
+  - Payment link from a domain that is not official
+source_url: https://www.bund.example/fee
+last_verified: 2026-10-01
+reviewer: test-reviewer

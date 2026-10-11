@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ajeetchouksey/theBudddy/knowledge/_schema/fact.json",
+  "title": "Knowledge pack file",
+  "description": "One YAML file per topic and scope: fact entries plus optional checklist tasks. Rules beyond structure (allowlist, dates, expiry, reviewer) live in scripts/check_content.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "entries"],
+  "properties": {
+    "schema": { "const": 1 },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/entry" }
+    },
+    "tasks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/task" }
+    }
+  },
+  "$defs": {
+    "slug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "https_url": { "type": "string", "pattern": "^https://[^\\s]+$", "maxLength": 500 },
+    "reviewer": {
+      "description": "GitHub handle of the human reviewer. Empty only on non-main branches.",
+      "type": "string",
+      "pattern": "^$|^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$"
+    },
+    "layer": { "enum": ["national", "state", "city", "university"] },
+    "phase": { "type": "integer", "minimum": 0, "maximum": 7 },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "layer", "scope", "topic", "phase", "text", "source_url", "last_verified", "reviewer"],
+      "properties": {
+        "id": {
+          "description": "<scope>.<topic>.<slug>",
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*\\.[a-z0-9][a-z0-9_-]*\\.[a-z0-9][a-z0-9_-]*$"
+        },
+        "layer": { "$ref": "#/$defs/layer" },
+        "scope": { "$ref": "#/$defs/slug" },
+        "topic": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$" },
+        "phase": { "$ref": "#/$defs/phase" },
+        "text": { "type": "string", "minLength": 1, "maxLength": 800 },
+        "source_url": { "$ref": "#/$defs/https_url" },
+        "last_verified": { "$ref": "#/$defs/date" },
+        "reviewer": { "$ref": "#/$defs/reviewer" },
+        "expires": { "$ref": "#/$defs/date" }
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_id", "phase", "title", "why", "source_url", "last_verified", "reviewer"],
+      "properties": {
+        "task_id": {
+          "description": "<scope>.<topic>.<slug>, same shape as entry ids",
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*\\.[a-z0-9][a-z0-9_-]*\\.[a-z0-9][a-z0-9_-]*$"
+        },
+        "phase": { "$ref": "#/$defs/phase" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "why": { "type": "string", "minLength": 1, "maxLength": 400 },
+        "due_offset_days": {
+          "description": "Due date as days from semester start (negative = before). Sheet formulas compute the date.",
+          "type": "integer",
+          "minimum": -365,
+          "maximum": 365
+        },
+        "depends_on": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "source_url": { "$ref": "#/$defs/https_url" },
+        "last_verified": { "$ref": "#/$defs/date" },
+        "reviewer": { "$ref": "#/$defs/reviewer" },
+        "expires": { "$ref": "#/$defs/date" }
+      }
+    }
+  }
+}

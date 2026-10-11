@@ -1,0 +1,34 @@
+name: Feature
+description: A new capability or change, linked to a requirement.
+labels: ["type:feature"]
+body:
+  - type: input
+    id: requirements
+    attributes:
+      label: Requirement IDs
+      description: FR or NFR IDs from docs/requirements.md
+      placeholder: FR-5.1, NFR-SEC.2
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What and why
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Testable, one per line.
+      placeholder: "- [ ] ..."
+    validations:
+      required: true
+  - type: checkboxes
+    id: tools
+    attributes:
+      label: Tools affected
+      options:
+        - label: Gemini
+        - label: Claude
+        - label: Copilot

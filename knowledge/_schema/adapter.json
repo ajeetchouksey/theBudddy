@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ajeetchouksey/theBudddy/knowledge/_schema/adapter.json",
+  "title": "Tool adapter",
+  "description": "Capability flags per AI tool and plan (docs/technical-architecture.md, Capability model). Flags are 'yes', 'no' or 'unknown'; YAML booleans are normalised to yes/no before validation. Fallback completeness, inheritance and freshness are checked by scripts/check_adapters.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tool", "schema", "plans", "fallbacks", "last_verified", "verified_by"],
+  "properties": {
+    "tool": { "enum": ["gemini", "claude", "copilot"] },
+    "schema": { "const": 1 },
+    "plans": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["free"],
+      "properties": {
+        "free": { "$ref": "#/$defs/free_plan" },
+        "paid": { "$ref": "#/$defs/derived_plan" },
+        "education": { "$ref": "#/$defs/derived_plan" }
+      }
+    },
+    "fallbacks": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/capability" },
+      "additionalProperties": { "$ref": "#/$defs/fallback_target" }
+    },
+    "notes": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/capability" },
+      "additionalProperties": { "type": "string", "maxLength": 500 }
+    },
+    "last_verified": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "verified_by": { "type": "string", "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$" }
+  },
+  "$defs": {
+    "capability": {
+      "enum": [
+        "drive_read", "fetch_url", "gmail_search", "calendar_write", "tasks_write",
+        "sheets_edit", "charts_inline", "canvas_html", "sheets_canvas", "scheduled_actions"
+      ]
+    },
+    "floor_action": {
+      "description": "Things that work on every tool and plan without a flag",
+      "enum": [
+        "status_link", "handover_upload", "ask_student", "bundled_snapshot", "student_pastes",
+        "ics_link", "add_task_link", "action_links", "text_cards", "calendar_reminder"
+      ]
+    },
+    "fallback_target": {
+      "anyOf": [{ "$ref": "#/$defs/capability" }, { "$ref": "#/$defs/floor_action" }]
+    },
+    "flag": { "enum": ["yes", "no", "unknown"] },
+    "free_plan": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/capability" },
+      "additionalProperties": { "$ref": "#/$defs/flag" }
+    },
+    "derived_plan": {
+      "type": "object",
+      "required": ["inherits"],
+      "properties": { "inherits": { "const": "free" } },
+      "propertyNames": {
+        "anyOf": [{ "const": "inherits" }, { "$ref": "#/$defs/capability" }]
+      },
+      "additionalProperties": { "$ref": "#/$defs/flag" }
+    }
+  }
+}

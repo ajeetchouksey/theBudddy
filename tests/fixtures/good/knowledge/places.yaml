@@ -1,0 +1,12 @@
+schema: 1
+states:
+  teststate:
+    name: Test State
+cities:
+  testcity:
+    name: Test City
+    state: teststate
+universities:
+  testuni:
+    name: Test University
+    city: testcity

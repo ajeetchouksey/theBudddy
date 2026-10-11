@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "0.1.0",
+  "template": "1.0",
+  "packs": {
+    "national/de": "2026-10-01",
+    "city/testcity": "2026-10-01"
+  },
+  "critical": null,
+  "notes": "Test release."
+}
