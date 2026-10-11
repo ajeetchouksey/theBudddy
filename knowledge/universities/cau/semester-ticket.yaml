@@ -1,0 +1,93 @@
+# Deutschland-Semesterticket for CAU students. Prices are left out on purpose: they follow the
+# Deutschlandticket price and change; the fee entry in semester-fee.yaml carries the amount.
+# Drafted with the pack-author skill. reviewer stays empty until a human checks each source.
+schema: 1
+entries:
+  - id: cau.semester-ticket.included
+    layer: university
+    scope: cau
+    topic: semester-ticket
+    phase: 2
+    text: >-
+      As a CAU student you get the Deutschland-Semesterticket (a discounted Deutschlandticket
+      for students). You pay for it with your semester fee; you do not buy it separately.
+      It is valid in 2nd class on local buses and trains everywhere in Germany where the
+      Deutschlandticket is valid.
+    source_url: https://asta.uni-kiel.de/en/semesterticket/de-semesterticket/
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: cau.semester-ticket.app
+    layer: university
+    scope: cau
+    topic: semester-ticket
+    phase: 2
+    text: >-
+      The ticket is digital. Install the NAH.SH app. Log in to the NAH.SH order portal with
+      your CIM ID (your CAU user account), order the ticket and upload a photo of yourself.
+      You then get an activation code. Enter it in the app to load the ticket as a QR code.
+    source_url: https://asta.uni-kiel.de/en/semesterticket/semesterticket-freischalten/
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: cau.semester-ticket.requirements
+    layer: university
+    scope: cau
+    topic: semester-ticket
+    phase: 2
+    text: >-
+      You can only order the ticket when your semester fee is paid and your enrolment is
+      recorded. New students must first set a password for their CIM ID in the CIM portal.
+    source_url: https://asta.uni-kiel.de/en/semesterticket/semesterticket-freischalten/
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: cau.semester-ticket.first-semester
+    layer: university
+    scope: cau
+    topic: semester-ticket
+    phase: 2
+    text: >-
+      New students (first semester or transfer) can activate the ticket only from the
+      first day of the semester: 1 October or 1 April. If you get an error before that day,
+      try again on the first day.
+    source_url: https://asta.uni-kiel.de/en/semesterticket/semesterticket-freischalten/
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: cau.semester-ticket.chip-card
+    layer: university
+    scope: cau
+    topic: semester-ticket
+    phase: 2
+    text: >-
+      If you cannot use the ticket on a phone, you can apply for a chip card instead. Use
+      the online form of the AStA (the student union), not the NAH.SH website.
+    source_url: https://asta.uni-kiel.de/en/semesterticket/semesterticket-freischalten/
+    last_verified: 2026-10-11
+    reviewer: ""
+
+tasks:
+  - task_id: cau.semester-ticket.set-cim-password
+    phase: 2
+    title: Set your CIM password
+    why: >-
+      You need your CIM ID (your CAU user account) with a password to order the
+      semester ticket.
+    due_offset_days: 0
+    depends_on: []
+    source_url: https://asta.uni-kiel.de/en/semesterticket/semesterticket-freischalten/
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - task_id: cau.semester-ticket.activate
+    phase: 2
+    title: Activate your semester ticket
+    why: >-
+      Your semester fee already pays for it. New students can activate it from the first
+      day of the semester in the NAH.SH app.
+    due_offset_days: 0
+    depends_on: [cau.semester-ticket.set-cim-password]
+    source_url: https://asta.uni-kiel.de/en/semesterticket/semesterticket-freischalten/
+    last_verified: 2026-10-11
+    reviewer: ""
