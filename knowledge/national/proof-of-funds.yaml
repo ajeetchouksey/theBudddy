@@ -1,0 +1,71 @@
+# Proof of funds (Finanzierungsnachweis) for a student visa — national rules, as published by
+# the German missions in India. The amount follows the BAföG rate; a BAföG reform is planned but
+# not in force (cabinet decision 12.08.2026, first changes from summer semester 2027 at the
+# earliest), so the amount entries expire on 31.03.2027 for re-checking.
+# Drafted with the pack-author skill. reviewer stays empty until a human checks each source.
+schema: 1
+entries:
+  - id: de.proof-of-funds.amount
+    layer: national
+    scope: de
+    topic: proof-of-funds
+    phase: 1
+    text: >-
+      For a student visa you must show money for your first year in Germany: 11,904 euros
+      (992 euros a month). Most students do this with a blocked account (Sperrkonto = a
+      German bank account you can only take a fixed amount from each month).
+    source_url: https://india.diplo.de/in-en/service/-/2552164
+    last_verified: 2026-10-11
+    reviewer: ""
+    expires: 2027-03-31
+
+  - id: de.proof-of-funds.options
+    layer: national
+    scope: de
+    topic: proof-of-funds
+    phase: 1
+    text: >-
+      There are three ways to prove your money: a blocked account with the first-year
+      amount; a formal letter of obligation (Verpflichtungserklärung) from a sponsor who
+      lives in Germany; or a confirmed German or EU scholarship.
+    source_url: https://india.diplo.de/in-en/service/-/2552164
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: de.proof-of-funds.monthly-limit
+    layer: national
+    scope: de
+    topic: proof-of-funds
+    phase: 2
+    text: >-
+      From a blocked account you can take out at most 992 euros a month. Plan extra money
+      for your first weeks, for example for a rent deposit.
+    source_url: https://india.diplo.de/in-en/service/-/2552164
+    last_verified: 2026-10-11
+    reviewer: ""
+    expires: 2027-03-31
+
+  - id: de.proof-of-funds.tuition
+    layer: national
+    scope: de
+    topic: proof-of-funds
+    phase: 1
+    text: >-
+      If your university charges tuition fees, you must also show money for the fees of
+      your first two semesters. This comes on top of the blocked account amount, for
+      example as a payment confirmation from the university or an education loan.
+    source_url: https://india.diplo.de/in-en/service/-/2552164
+    last_verified: 2026-10-11
+    reviewer: ""
+
+tasks:
+  - task_id: de.proof-of-funds.arrange
+    phase: 1
+    title: Arrange your proof of funds
+    why: >-
+      You need it for the visa. Open a blocked account with the first-year amount, or get
+      a letter of obligation from a sponsor in Germany or a scholarship confirmation.
+    depends_on: []
+    source_url: https://india.diplo.de/in-en/service/-/2552164
+    last_verified: 2026-10-11
+    reviewer: ""
