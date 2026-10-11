@@ -1,0 +1,91 @@
+# Anmeldung (address registration) — rules that apply everywhere in Germany.
+# Local details (which office, appointments, online options) belong in the city layer.
+# Drafted with the pack-author skill. reviewer stays empty until a human checks each source.
+schema: 1
+entries:
+  - id: de.anmeldung.deadline
+    layer: national
+    scope: de
+    topic: anmeldung
+    phase: 2
+    text: >-
+      When you move into a flat or room in Germany, you must register your address
+      (Anmeldung = address registration) within two weeks of moving in.
+    source_url: https://verwaltung.bund.de/leistungsverzeichnis/EN/leistung/99115005104000
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: de.anmeldung.in-person
+    layer: national
+    scope: de
+    topic: anmeldung
+    phase: 2
+    text: >-
+      You register at the registration office (Meldebehörde) of the town you moved to.
+      You register there in person.
+    source_url: https://verwaltung.bund.de/leistungsverzeichnis/EN/leistung/99115005104000
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: de.anmeldung.landlord-confirmation
+    layer: national
+    scope: de
+    topic: anmeldung
+    phase: 2
+    text: >-
+      Your landlord must give you a written confirmation that you moved in
+      (Wohnungsgeberbestätigung = landlord's confirmation). It shows the landlord's name
+      and address, your move-in date, the flat's address and the names of everyone who
+      moved in. The landlord must give it to you within two weeks of your move-in.
+      You need it for your registration.
+    source_url: https://www.gesetze-im-internet.de/bmg/__19.html
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: de.anmeldung.landlord-refuses
+    layer: national
+    scope: de
+    topic: anmeldung
+    phase: 2
+    text: >-
+      If your landlord refuses to give you the confirmation, or does not give it in
+      time, tell the registration office straight away. Do not wait until your own
+      two weeks have passed.
+    source_url: https://www.gesetze-im-internet.de/bmg/__19.html
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: de.anmeldung.late-fine
+    layer: national
+    scope: de
+    topic: anmeldung
+    phase: 2
+    text: >-
+      Registering late is an administrative offence (Ordnungswidrigkeit = a minor
+      offence that is punished with a fine, not a crime). You can be fined for it.
+    source_url: https://www.gesetze-im-internet.de/bmg/__54.html
+    last_verified: 2026-10-11
+    reviewer: ""
+
+tasks:
+  - task_id: de.anmeldung.get-landlord-confirmation
+    phase: 2
+    title: Get the landlord's confirmation
+    why: >-
+      You need the Wohnungsgeberbestätigung (landlord's confirmation) to register your
+      address. Ask your landlord for it when you move in.
+    depends_on: []
+    source_url: https://www.gesetze-im-internet.de/bmg/__19.html
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - task_id: de.anmeldung.register-address
+    phase: 2
+    title: Register your address (Anmeldung)
+    why: >-
+      You must register within two weeks of moving in. Registering late can lead to
+      a fine.
+    depends_on: [de.anmeldung.get-landlord-confirmation]
+    source_url: https://verwaltung.bund.de/leistungsverzeichnis/EN/leistung/99115005104000
+    last_verified: 2026-10-11
+    reviewer: ""
