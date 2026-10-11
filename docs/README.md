@@ -18,4 +18,5 @@ Design docs. Prompts and agents refer to them by these paths, so keep names stab
 | `dev-agent-instructions.md` | AGENTS.md and task prompts P1–P13 |
 | `what-you-need.md` | Student-facing setup guide |
 | `spike-results.md` | Week 1 spike runbook and results (gate G1) |
+| `features/money-plan.md` | F13 Money plan: financial planning and forecasting (proposed) |
 | `adr/` | Architecture decision records |

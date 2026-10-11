@@ -13,4 +13,5 @@ Python 3 tools used locally and in CI. Standard library + `pyyaml` + `jsonschema
 | `fact_diff.py` | Old → new values of changed facts (PR comment) |
 | `check_links.py` | Checks `source_url` of changed facts |
 | `freshness.py` | Entries expiring soon, per layer (weekly issues) |
+| `money_plan.py` | Reference model for the Money plan sheet formulas (F13) |
 | `run_evals.py` | Eval runner (task P10) |
