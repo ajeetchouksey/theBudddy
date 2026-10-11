@@ -1,0 +1,124 @@
+# Anmeldung (address registration) — Kiel details. National rules are in
+# knowledge/national/anmeldung.yaml; entries here with the same topic and slug override them
+# for Kiel students (e.g. kiel.anmeldung.in-person overrides de.anmeldung.in-person).
+# Office addresses and phone numbers change often, so those entries expire after 3 months.
+# Drafted with the pack-author skill. reviewer stays empty until a human checks each source.
+schema: 1
+entries:
+  - id: kiel.anmeldung.in-person
+    layer: city
+    scope: kiel
+    topic: anmeldung
+    phase: 2
+    text: >-
+      In Kiel you register at a city office (Stadtamt). You cannot register online.
+      If you lived abroad before moving to Kiel, you must go to the office yourself.
+    source_url: https://www.kiel.de/ls/wohnen_und_umziehen/wohnung_anmelden.php
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: kiel.anmeldung.offices
+    layer: city
+    scope: kiel
+    topic: anmeldung
+    phase: 2
+    text: >-
+      City offices (Stadtamt) where you can register: Rathaus, Fleethörn 9, 24103 Kiel;
+      Hassee, Saarbrückenstraße 147, 24113 Kiel; Pries und Friedrichsort, An der Schanze 45,
+      24159 Kiel; Mettenhof, Skandinaviendamm 299, 24109 Kiel. The offices in Suchsdorf,
+      Elmschenhagen and Neumühlen-Dietrichsdorf are closed for a long time.
+    source_url: https://www.kiel.de/ls/wohnen_und_umziehen/wohnung_anmelden.php
+    last_verified: 2026-10-11
+    reviewer: ""
+    expires: 2027-01-11
+
+  - id: kiel.anmeldung.appointment
+    layer: city
+    scope: kiel
+    topic: anmeldung
+    phase: 2
+    text: >-
+      Call before you go. For an appointment, call 0431 901 904. For general questions,
+      call 0431 901 900.
+    source_url: https://www.kiel.de/ls/wohnen_und_umziehen/wohnung_anmelden.php
+    last_verified: 2026-10-11
+    reviewer: ""
+    expires: 2027-01-11
+
+  - id: kiel.anmeldung.documents
+    layer: city
+    scope: kiel
+    topic: anmeldung
+    phase: 2
+    text: >-
+      Bring your passport and the landlord's confirmation (Wohnungsgeberbestätigung),
+      filled in and signed by your landlord. If you come from abroad, also bring your
+      residence permit or visa, and your marriage certificate if you are married.
+      Documents in another language must be translated into German. Ask the office
+      before your visit if your documents are accepted in Germany.
+    source_url: https://www.kiel.de/ls/wohnen_und_umziehen/wohnung_anmelden.php
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: kiel.anmeldung.forms
+    layer: city
+    scope: kiel
+    topic: anmeldung
+    phase: 2
+    text: >-
+      You can fill in two forms before your visit: the landlord's confirmation
+      (https://www.kiel.de/de/politik_verwaltung/service/_zustaendigkeitsfinder/_antraege_fs/wohnungsgeber_innen_bestaetigung.pdf)
+      and the registration form (Meldeschein,
+      https://www.kiel.de/de/politik_verwaltung/service/_zustaendigkeitsfinder/buerger_und_ordnungsamt/ema/anmeldung_lhk.pdf).
+      Bringing the registration form is optional.
+    source_url: https://www.kiel.de/ls/wohnen_und_umziehen/wohnung_anmelden.php
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: kiel.anmeldung.cost
+    layer: city
+    scope: kiel
+    topic: anmeldung
+    phase: 2
+    text: >-
+      Registering your address in Kiel is free.
+    source_url: https://www.kiel.de/ls/wohnen_und_umziehen/wohnung_anmelden.php
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: kiel.anmeldung.confirmation
+    layer: city
+    scope: kiel
+    topic: anmeldung
+    phase: 2
+    text: >-
+      At the office you get a registration confirmation (Meldebestätigung). It shows that
+      you are registered in Kiel. Keep it safe.
+    source_url: https://www.kiel.de/ls/wohnen_und_umziehen/wohnung_anmelden.php
+    last_verified: 2026-10-11
+    reviewer: ""
+
+tasks:
+  - task_id: kiel.anmeldung.call-for-appointment
+    phase: 2
+    title: Call the city office for an appointment
+    why: >-
+      Kiel asks you to call before you go. Call 0431 901 904 and book a time at a
+      Stadtamt (city office).
+    depends_on: []
+    source_url: https://www.kiel.de/ls/wohnen_und_umziehen/wohnung_anmelden.php
+    last_verified: 2026-10-11
+    reviewer: ""
+    expires: 2027-01-11
+
+  - task_id: kiel.anmeldung.register-address
+    phase: 2
+    title: Register your address at the Stadtamt
+    why: >-
+      You must register within two weeks of moving in. In Kiel you go in person; there
+      is no online option. Bring your passport, the landlord's confirmation and, if you
+      come from abroad, your visa or residence permit.
+    depends_on: [de.anmeldung.get-landlord-confirmation, kiel.anmeldung.call-for-appointment]
+    source_url: https://www.kiel.de/ls/wohnen_und_umziehen/wohnung_anmelden.php
+    last_verified: 2026-10-11
+    reviewer: ""
