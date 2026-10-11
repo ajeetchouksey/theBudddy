@@ -1,0 +1,28 @@
+# Capability flags for claude. Every flag stays unknown until the spike records evidence.
+tool: claude
+schema: 1
+plans:
+  free:
+    drive_read: unknown
+    fetch_url: unknown
+    gmail_search: unknown
+    calendar_write: unknown
+    tasks_write: unknown
+    sheets_edit: unknown
+    charts_inline: unknown
+    canvas_html: unknown
+    sheets_canvas: unknown
+    scheduled_actions: unknown
+fallbacks:
+  drive_read: status_link
+  fetch_url: bundled_snapshot
+  gmail_search: student_pastes
+  calendar_write: ics_link
+  tasks_write: add_task_link
+  sheets_edit: action_links
+  charts_inline: text_cards
+  canvas_html: charts_inline
+  sheets_canvas: canvas_html
+  scheduled_actions: calendar_reminder
+last_verified: 2026-10-11
+verified_by: ajeetchouksey
