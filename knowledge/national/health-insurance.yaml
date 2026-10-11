@@ -1,0 +1,94 @@
+# Health insurance for students — national rules. No euro amounts: contributions differ by
+# insurer and change every year; the student's own insurer confirms the amount.
+# General information, not insurance or legal advice: entries point students to their insurer.
+# Drafted with the pack-author skill. reviewer stays empty until a human checks each source.
+schema: 1
+entries:
+  - id: de.health-insurance.required-for-enrolment
+    layer: national
+    scope: de
+    topic: health-insurance
+    phase: 1
+    text: >-
+      You must prove that you have health insurance when you enrol at a German university.
+    source_url: https://gesund.bund.de/en/krankenversicherung-studierende
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: de.health-insurance.visa
+    layer: national
+    scope: de
+    topic: health-insurance
+    phase: 1
+    text: >-
+      Students from some countries must already show health insurance when they apply
+      for the visa. Check what your German embassy or consulate asks for.
+    source_url: https://www.daad.de/en/studying-in-germany/living-in-germany/health-insurance/
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: de.health-insurance.statutory-under-30
+    layer: national
+    scope: de
+    topic: health-insurance
+    phase: 1
+    text: >-
+      Students under 30 generally must have statutory health insurance (gesetzliche
+      Krankenversicherung, GKV = public health insurance). The cheaper student insurance
+      usually ends in the semester you turn 30, or when you finish your studies.
+    source_url: https://gesund.bund.de/en/krankenversicherung-studierende
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: de.health-insurance.cost
+    layer: national
+    scope: de
+    topic: health-insurance
+    phase: 1
+    text: >-
+      Student health insurance costs about 70 percent of the general contribution rate,
+      plus an extra contribution that each insurer sets itself. So the monthly amount is
+      different at each insurer. Ask the insurer for the exact amount before you choose.
+    source_url: https://gesund.bund.de/en/krankenversicherung-studierende
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: de.health-insurance.home-country
+    layer: national
+    scope: de
+    topic: health-insurance
+    phase: 1
+    text: >-
+      Insurance from your home country is accepted in Germany only in some cases, mainly
+      for students from the EU and EEA. Students from other countries usually need German
+      health insurance.
+    source_url: https://www.daad.de/en/studying-in-germany/living-in-germany/health-insurance/
+    last_verified: 2026-10-11
+    reviewer: ""
+
+  - id: de.health-insurance.exemption
+    layer: national
+    scope: de
+    topic: health-insurance
+    phase: 1
+    text: >-
+      You can ask to be freed from statutory insurance (Befreiung = exemption) in the first
+      3 months of your studies, if you show private health insurance. This choice usually
+      lasts for your whole studies and cannot be undone: you cannot switch back to
+      statutory insurance while you study. Think carefully and ask an insurer or your
+      student advice service before you decide.
+    source_url: https://gesund.bund.de/en/krankenversicherung-studierende
+    last_verified: 2026-10-11
+    reviewer: ""
+
+tasks:
+  - task_id: de.health-insurance.get-insured
+    phase: 1
+    title: Get health insurance and proof for enrolment
+    why: >-
+      You need proof of health insurance to enrol. Students under 30 usually need
+      statutory (public) insurance. Compare the extra contribution of a few insurers.
+    depends_on: []
+    source_url: https://gesund.bund.de/en/krankenversicherung-studierende
+    last_verified: 2026-10-11
+    reviewer: ""
