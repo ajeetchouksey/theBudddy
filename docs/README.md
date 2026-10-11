@@ -17,4 +17,5 @@ Design docs. Prompts and agents refer to them by these paths, so keep names stab
 | `developer-skills.md` | Claude skills for maintainers |
 | `dev-agent-instructions.md` | AGENTS.md and task prompts P1–P13 |
 | `what-you-need.md` | Student-facing setup guide |
+| `spike-results.md` | Week 1 spike runbook and results (gate G1) |
 | `adr/` | Architecture decision records |

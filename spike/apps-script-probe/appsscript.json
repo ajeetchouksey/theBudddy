@@ -1,0 +1,10 @@
+{
+  "timeZone": "Europe/Berlin",
+  "runtimeVersion": "V8",
+  "exceptionLogging": "STACKDRIVER",
+  "oauthScopes": ["https://www.googleapis.com/auth/drive.file"],
+  "dependencies": {
+    "enabledAdvancedServices": [{ "userSymbol": "Sheets", "serviceId": "sheets", "version": "v4" }]
+  },
+  "webapp": { "executeAs": "USER_DEPLOYING", "access": "MYSELF" }
+}
