@@ -232,10 +232,11 @@ The project is never a data processor: personal data stays in the student's Goog
 
 ## Decision log
 
-Eleven decisions shape the MVP; each becomes an ADR file in `docs/adr/` when the repo exists. Newest first.
+Twelve decisions shape the MVP; each becomes an ADR file in `docs/adr/` when the repo exists. Newest first.
 
 | ADR | Decision | Why | Status |
 | --- | --- | --- | --- |
+| 012 | Students use the vendors' own apps; AI CLIs only as maintainer tooling (evals) | CLIs need paid plans or desktops, and consumer logins may not be routed through third-party tools | Accepted |
 | 011 | Reads via native Google connectors in each tool; we build no Gmail, Calendar or Drive integration | All three tools already connect to Google | Accepted, verify in spike |
 | 010 | Students can switch tools any time; state only in Drive; nonce idempotency | Students change tools; no lost or doubled changes | Accepted |
 | 009 | Adapters per tool × plan with inheritance; plan detected by use | Features vary by plan; keep setup at 3 actions | Accepted |

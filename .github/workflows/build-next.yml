@@ -1,5 +1,8 @@
 # Push to main: validate with main rules, build twice (must be identical), upload artefacts.
 # Publishing to the next channel is a maintainer TODO; the release workflow is task P11.
+# TODO(maintainers): add a publish job bound to a "next" environment (test Drive folder,
+# latest-next.json on GitHub Pages) once the Drive upload credential exists.
+# See docs/release-management.md and docs/tech-stack-development.md.
 name: build-next
 
 on:
@@ -56,6 +59,3 @@ jobs:
             skill/reference/packs/
           if-no-files-found: error
           retention-days: 30
-      # TODO(maintainers): publish to the next channel (test Drive folder, latest-next.json on
-      # GitHub Pages) in a separate job bound to a "next" environment, once the Drive upload
-      # credential exists. See docs/release-management.md and docs/tech-stack-development.md.
