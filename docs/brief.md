@@ -1,6 +1,6 @@
 # Germany Student Companion — Project Brief
 
-Last updated: 10 October 2026
+Last updated: 11 October 2026
 Build plan (living doc): https://claude.ai/code/artifact/57ef7deb-931e-4446-b44f-972e6964c72f
 
 > Source of truth is the project brief in the claude.ai project "theBuddy". Keep this copy in sync.
@@ -17,6 +17,7 @@ An AI companion for international students moving to Germany (first audience: st
 | First platform | Gemini, built as a **Skill** (SKILL.md + reference files). Gems are being replaced by Skills (personal accounts from Nov 2026) |
 | Second platform | Claude (same SKILL.md imports) |
 | Product shape | Chat-first. PWA only if the pilot shows a need |
+| Student channel | Students use the vendors' own apps (web and mobile). AI CLIs (Claude Code, Antigravity CLI, GitHub Copilot CLI) are maintainer tooling only, for automated evals. See ADR 0012 |
 | Data | No personal data on project servers; everything personal in the student's Google account |
 | Knowledge | Layered packs: national → state → city → university, built from YAML with schema checks |
 | Scaling | One generic skill; new places = new pack files via pull requests; coverage levels 0/1/2 |
@@ -24,6 +25,7 @@ An AI companion for international students moving to Germany (first audience: st
 | Writes | One-tap **action links** to the student's own Apps Script (token, undo log). Fallbacks: prefilled Google Form, sheet checkboxes |
 | Integrations | Through Gemini: Drive, Gmail (read, search by sender list — no filter needed), Calendar (after a yes), Google Tasks, Maps |
 | Visuals | Tier 1 text cards · Tier 2 interactive charts in chat · Tier 2b Canvas HTML dashboard from our `dashboard.html` template · Tier 3 Sheets canvas tab (paid) |
+| Money plan | 24-month forecast in the student's Budget sheet (formulas only): runway, balances at the permit extension date, top-up and monthly saving target. Benchmark and payout from packs; Kiel extension rules pending. See `docs/features/money-plan.md` |
 | Updates | Packs via Drive shortcut to a public folder (auto) · skill re-import (rare) · sheet menu "Update template" · `latest.json` with `critical` flag |
 | MCP server | Phase 2 (Claude, Copilot, ChatGPT), Azure Container Apps, no personal data |
 
@@ -36,11 +38,11 @@ An AI companion for international students moving to Germany (first audience: st
 - `index.md`: versions (skill, template, packs), file → purpose map, action-link URL + token. Read first in every chat.
 - `profile.md`: country, city, university, course, degree, semester start, phase, German level, goals. No passport/visa numbers.
 - Checklist: `task_id, phase, title, why, status, due_date, depends_on, source_url, last_verified`.
-- Budget: `date, category, amount, note` + Dashboard tab (monthly totals, runway, over-budget date).
+- Budget: `date, category, amount, note` + Dashboard tab (monthly totals, runway, over-budget date). Template 1.1 (proposed, F13) adds Plan, OneOffs and Forecast tabs.
 - Log tab: every action-link change (for undo).
 - Pack entry: `id, layer, topic, text, source_url, last_verified, reviewer`.
 - `latest.json`: `skill, template, packs{}, critical, notes`.
-- Action links: `done/undo(task)`, `add_task(title, due)`, `expense(amount, category, note)`, `study(module, minutes)`, `phase(n)`.
+- Action links: `done/undo(task)`, `add_task(title, due)`, `expense(amount, category, note)`, `study(module, minutes)`, `phase(n)`. Proposed (F13): `plan(field, value)`, `oneoff(month, amount, note)`.
 - Rule: minor versions only add fields; renames need a major version + migration.
 
 ## 5. Checklist phases
@@ -82,14 +84,19 @@ Setup without help 8/10 under 10 min · tasks on time 80% · still using in week
 - Who verifies Kiel/CAU content
 - Legal reviewer for rights content
 - Final pilot targets
+- Kiel residence-permit extension: months of proof required, whether remaining blocked balance and job income count (needed for the Money plan)
 
 ## 12. Verified facts so far (check again before use)
-- CAU students get the Deutschland-Semesterticket via the semester fee; digital ticket, chip card on application via AStA ([AStA CAU](https://asta.uni-kiel.de/en/semesterticket/de-semesterticket/)). Current fee amount to verify.
+- CAU students get the Deutschland-Semesterticket via the semester fee; digital ticket via the NAH.SH app with CIM ID, chip card on application via AStA ([AStA CAU](https://asta.uni-kiel.de/en/semesterticket/semesterticket-freischalten/)).
+- CAU semester fee winter semester 2026/27: 403 € (semester ticket 226.80 €) ([AStA CAU](https://asta.uni-kiel.de/en/service/semesterbeitrag/)).
+- Proof of funds for a student visa: 11,904 € for the first year; blocked account pays out at most 992 €/month ([German Missions in India](https://india.diplo.de/in-en/service/-/2552164)). BAföG reform decided by cabinet 12 Aug 2026, not yet law; no change before summer semester 2027.
+- At permit extension, living costs must be proven again (benchmark: BAföG maximum rate); blocked account, parents' income or scholarship accepted (Karlsruhe service page; Kiel to confirm).
 - CAU uses HISinOne/QIS for exam registration.
 - Gemini Skills replace Gems; SKILL.md import; reference files since 30 Sep 2026; personal accounts migrate from Nov 2026 ([Unite.AI](https://www.unite.ai/google-brings-reusable-skills-to-gemini-chat-replacing-gems/), [DEV](https://dev.to/alifar/google-gemini-will-replace-gems-with-skills-migration-dates-and-transition-limits-1enc)).
 - Gemini interactive visualizations in chat for all app users with the Pro model, not Education/Workspace accounts yet (Apr 2026, [Google](https://blog.google/innovation-and-ai/products/gemini-app/3d-models-charts/)).
 - Sheets canvas: live mini-apps on sheet data, Google AI Pro/Ultra and some Workspace plans (Aug 2026, [Google](https://blog.google/products-and-platforms/products/workspace/sheets-canvas-for-google-sheets-spreadsheets/)).
 - No evidence that the consumer Gemini app connects to custom MCP servers.
+- Gemini CLI stopped serving free and individual accounts on 18 Jun 2026 (moved to Antigravity CLI); Claude Code needs a paid Claude plan ([ADR 0012](docs/adr/0012-students-use-vendor-apps-not-clis.md)).
 
 ## 13. Mockups produced
 Full app screens, dashboards and charts, user flow (6 stages), chat visuals (3 tiers), Gemini Canvas dashboard — HTML files in project knowledge.
