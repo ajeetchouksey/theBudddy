@@ -36,7 +36,7 @@ make validate test
 1. Open a **Facts** issue with the official source.
 2. Use the `pack-author` skill, or follow `.claude/skills/pack-author/SKILL.md` by hand.
 3. Official sources only (federal, state, city and university sites, AStA, Studierendenwerk). Never blogs, forums, agencies or AI answers.
-4. Leave `reviewer` empty. A human reviewer for that layer sets it.
+4. Leave `reviewer` empty. A human reviewer for that layer sets it. Until then the `ready-to-merge` check stays red; that is expected.
 
 ## Pull requests
 

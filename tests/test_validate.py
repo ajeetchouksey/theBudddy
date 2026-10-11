@@ -41,7 +41,7 @@ def test_missing_yamllint_reported(repo, monkeypatch):
 
 def test_cli_accepts_root(repo):
     out = subprocess.run([sys.executable, str(SCRIPT), str(repo.root)],
-                         capture_output=True, text=True)
+                         capture_output=True, text=True, encoding="utf-8", errors="replace")
     assert out.returncode == 0, out.stdout
 
 

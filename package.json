@@ -6,7 +6,7 @@
   "scripts": {
     "test": "vitest run --passWithNoTests",
     "format": "prettier --write \"apps-script/**/*.{js,html}\" \"skill/reference/*.html\"",
-    "format:check": "prettier --check \"apps-script/**/*.{js,html}\" \"skill/reference/*.html\""
+    "format:check": "prettier --check --no-error-on-unmatched-pattern \"apps-script/**/*.{js,html}\" \"skill/reference/*.html\""
   },
   "devDependencies": {
     "prettier": "3.3.3",

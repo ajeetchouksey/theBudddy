@@ -4,7 +4,7 @@ An open, privacy-first AI companion that helps international students settle int
 
 The companion is a **skill** that runs inside the student's own AI app (Gemini, Claude or Microsoft Copilot, free plans included). Everything personal lives in the student's own Google account. The project hosts no runtime and stores no personal data.
 
-> **Status:** scaffold and validators in place (tasks P1–P2). Knowledge packs, adapters, Apps Script and the skill land from 12 October 2026. Pilot with 10 CAU Kiel students runs **9–22 November 2026**.
+> **Status:** scaffold, validators, build and CI in place (tasks P1–P3). Knowledge packs, adapters, Apps Script and the skill land from 12 October 2026. Pilot with 10 CAU Kiel students runs **9–22 November 2026**.
 
 ---
 
@@ -60,18 +60,20 @@ After that, the AI answers from sourced knowledge packs, reads Drive, Gmail and 
 
 ```
 AGENTS.md                   standing brief for AI agents (CLAUDE.md points here)
+versions.yaml               skill and template versions (bumped in release PRs)
 knowledge/                  YAML packs: national/ (+ letters/), states/, cities/, universities/
+  places.yaml               university -> city -> state chain used to resolve packs
   _schema/                  JSON Schemas + official-domains.txt (source allowlist)
 skill/                      SKILL.md and reference/ (intents, adapters, bundled packs)
 templates/                  Journey folder templates (data contracts v1)
 apps-script/                action-link web app and Drive setup (clasp)
-scripts/                    validate, schema/content/skill/adapter checks, build, evals
+scripts/                    validate, checks, build, fact diff, link check, freshness, evals
 tests/                      pytest suite with invented fixture data
 evals/                      eval cases and results
 site/                       GitHub Pages: latest.json, setup page
 docs/                       design docs and docs/adr/
 .claude/skills/             developer skills (pack-author, ...)
-.github/                    PR and issue templates (workflows arrive with P3)
+.github/                    workflows (validate, freshness, build-next), templates, Dependabot
 build/                      generated, not committed
 ```
 
@@ -84,8 +86,22 @@ python3 -m pip install -r requirements-dev.txt
 npm install
 make validate   # yamllint, schemas, content, skill and adapter rules
 make test       # pytest with coverage (>= 80%), Apps Script tests
-make build      # packs, snapshot, skill zips, latest.json (task P3)
+make build      # packs, snapshot, skill zips, latest.json
 ```
+
+On Windows without `make`, run the scripts directly: `python scripts/validate.py`, `python -m pytest --cov`, `python scripts/build.py`.
+
+## CI
+
+| Workflow | When | What |
+| --- | --- | --- |
+| `validate` · `checks` | Every PR | ruff, validate, link check on changed `source_url`, pytest, Prettier, JS tests, build |
+| `validate` · `ready-to-merge` | Every PR | Same rules as `main`: fails while a pack entry has no `reviewer` or an adapter is stale |
+| `validate` · `fact-diff` | PRs touching `knowledge/` | Comments old → new values per entry |
+| `freshness` | Mondays | One issue per layer for entries expiring within 30 days |
+| `build-next` | Push to `main` | Strict validate, build twice and compare, checksums, upload artefacts |
+
+All Actions are pinned to commit SHAs; Dependabot keeps them current. Release (`v*` tags) is task P11.
 
 `make validate ROOT=tests/fixtures/good` runs the checks against another tree.
 
@@ -94,7 +110,9 @@ make build      # packs, snapshot, skill zips, latest.json (task P3)
 Agents may not do these; a maintainer sets them up by hand (see `docs/devops-system.md`):
 
 - [ ] Add `CODEOWNERS` with the reviewers per layer (national, state, Kiel, CAU, Apps Script, `.github/`)
-- [ ] Branch protection on `main`: PRs only, CODEOWNER review, required `validate` check, signed tags
+- [ ] Branch protection on `main`: PRs only, CODEOWNER review, required checks `checks` and `ready-to-merge`, signed tags
+- [ ] Settings → Actions → General: allow GitHub Actions to create and approve pull requests **off**; workflow permissions **read**
+- [ ] Publishing to the `next` channel (TODO in `build-next.yml`) once the Drive upload credential exists
 - [ ] Create the labels: `type:*`, `area:*`, `layer:*`, `tool:*`, `priority:*`, `ai-generated`, `needs-source`, `pilot-feedback`
 - [ ] Create the GitHub Project board (Inbox → Ready → In progress → In review → Done) and milestones
 - [ ] Turn on private vulnerability reporting, secret scanning, Dependabot and CodeQL

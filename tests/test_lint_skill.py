@@ -18,10 +18,11 @@ def test_no_skill_yet_passes(repo):
 @pytest.mark.parametrize("name", ["Kiel", "kiel", "Gemini", "Schleswig-Holstein", "München",
                                   "CAU", "Kiel University", "ChatGPT"])
 def test_denied_name_in_skill_fails(repo, name):
-    repo.write(SKILL, repo.path(SKILL).read_text() + f"\nStudents in {name} can ask.\n")
+    text = repo.path(SKILL).read_text(encoding="utf-8")
+    repo.write(SKILL, text + f"\nStudents in {name} can ask.\n")
     problems = lint_skill.check(repo.root)
     assert rules(problems) == ["S1 names"]
-    expected_line = len(repo.path(SKILL).read_text().splitlines())
+    expected_line = len(repo.path(SKILL).read_text(encoding="utf-8").splitlines())
     assert problems[0].path.endswith(f"SKILL.md:{expected_line}")
     assert name in problems[0].message
 
@@ -40,12 +41,12 @@ def test_ordinary_words_pass(repo, text):
 
 
 def test_readme_in_intents_is_skipped(repo):
-    assert "Kiel" in repo.path("skill/reference/intents/README.md").read_text()
+    assert "Kiel" in repo.path("skill/reference/intents/README.md").read_text(encoding="utf-8")
     assert lint_skill.check(repo.root) == []
 
 
 def test_missing_guardrail_heading_fails(repo):
-    text = repo.path(SKILL).read_text().replace("## Ground rules", "## Rules")
+    text = repo.path(SKILL).read_text(encoding="utf-8").replace("## Ground rules", "## Rules")
     repo.write(SKILL, text)
     (p,) = lint_skill.check(repo.root)
     assert p.rule == "S2 guardrails"
@@ -53,7 +54,7 @@ def test_missing_guardrail_heading_fails(repo):
 
 
 def test_skill_over_budget_fails(repo):
-    repo.write(SKILL, repo.path(SKILL).read_text() + "line\n" * 400)
+    repo.write(SKILL, repo.path(SKILL).read_text(encoding="utf-8") + "line\n" * 400)
     assert rules(lint_skill.check(repo.root)) == ["S3 size"]
 
 

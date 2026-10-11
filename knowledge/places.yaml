@@ -1,0 +1,15 @@
+# Which university is in which city, and which city is in which state.
+# The build uses this to resolve packs: university -> city -> state -> national.
+# A new place needs an entry here before its pack files validate (rule C8).
+schema: 1
+states:
+  schleswig-holstein:
+    name: Schleswig-Holstein
+cities:
+  kiel:
+    name: Kiel
+    state: schleswig-holstein
+universities:
+  cau:
+    name: Kiel University (CAU)
+    city: kiel

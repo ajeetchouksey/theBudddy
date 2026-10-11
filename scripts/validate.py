@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import importlib.util
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -34,8 +35,9 @@ def run_yamllint(root: Path) -> list[Problem]:
     if not config.exists():  # fixtures use the repo's config
         config = REPO_ROOT / ".yamllint"
     cmd = [sys.executable, "-m", "yamllint", "-c", str(config), "-f", "parsable", *targets]
-    out = subprocess.run(cmd, cwd=root,
-                         capture_output=True, text=True)
+    env = {**os.environ, "PYTHONIOENCODING": "utf-8"}  # Windows consoles default to cp1252
+    out = subprocess.run(cmd, cwd=root, env=env, capture_output=True, text=True,
+                         encoding="utf-8", errors="replace")
     problems = []
     for line in out.stdout.splitlines():
         if "[error]" in line:

@@ -24,6 +24,7 @@ LAYER_DIRS = {
     "universities": "university",
 }
 NATIONAL_SCOPE = "de"
+PLACES = Path("knowledge/places.yaml")
 
 
 @dataclass(frozen=True)
@@ -125,7 +126,8 @@ def current_branch(root: Path) -> str:
     try:
         out = subprocess.run(
             ["git", "rev-parse", "--abbrev-ref", "HEAD"],
-            cwd=root, capture_output=True, text=True, check=True,
+            cwd=root, capture_output=True, text=True, encoding="utf-8", errors="replace",
+            check=True,
         )
         return out.stdout.strip() or "unknown"
     except (OSError, subprocess.CalledProcessError):

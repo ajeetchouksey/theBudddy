@@ -11,6 +11,7 @@ from jsonschema import Draft202012Validator
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import (  # noqa: E402
+    PLACES,
     REPO_ROOT,
     SCHEMA_DIR,
     Problem,
@@ -27,6 +28,7 @@ SCHEMA_FOR = {
     "adapter": "adapter.json",
     "eval": "eval-case.json",
     "latest": "latest.json",
+    "places": "places.json",
 }
 
 
@@ -42,7 +44,12 @@ def load_validator(root: Path, name: str) -> Draft202012Validator:
 def targets(root: Path) -> list[tuple[Path, str]]:
     found: list[tuple[Path, str]] = []
     for path in yaml_files(root, "knowledge"):
-        kind = "letter" if "letters" in path.parts else "fact"
+        if path == root / PLACES:
+            kind = "places"
+        elif "letters" in path.parts:
+            kind = "letter"
+        else:
+            kind = "fact"
         found.append((path, kind))
     for path in yaml_files(root, "skill/reference/adapters"):
         found.append((path, "adapter"))

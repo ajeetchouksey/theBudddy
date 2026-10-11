@@ -1,0 +1,4 @@
+# Release versions (docs/technical-architecture.md, Versioning).
+# Bumped by the release-manager in a release PR; never by hand in feature PRs.
+skill: 0.1.0      # SemVer
+template: "1.0"   # Major.minor; quoted so YAML keeps it a string

@@ -1,6 +1,8 @@
 # Build output (keep the folder README)
 build/*
 !build/README.md
+skill/reference/packs/*
+!skill/reference/packs/README.md
 
 # Python
 __pycache__/

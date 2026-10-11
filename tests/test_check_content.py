@@ -159,5 +159,37 @@ def test_files_outside_layer_folders_skip_layer_rules(repo):
     assert rules(problems) == ["C6 unique"]  # same id as the national file, no C5 problems
 
 
+# C8 places
+def test_scope_missing_from_places_fails(repo):
+    repo.edit("knowledge/places.yaml", lambda d: d["universities"].pop("testuni"))
+    (p,) = check_content.check(repo.root)
+    assert p.rule == "C8 places"
+    assert p.path == "knowledge/universities/testuni/enrolment.yaml"
+    assert "university 'testuni'" in p.message
+
+
+def test_city_with_unknown_state_fails(repo):
+    repo.edit("knowledge/places.yaml", lambda d: d["cities"]["testcity"].update(state="nowhere"))
+    (p,) = check_content.check(repo.root)
+    assert p.rule == "C8 places" and "unknown state 'nowhere'" in p.message
+
+
+def test_university_with_unknown_city_fails(repo):
+    repo.edit("knowledge/places.yaml", lambda d: d["universities"]["testuni"].update(city="x"))
+    (p,) = check_content.check(repo.root)
+    assert p.rule == "C8 places" and "unknown city 'x'" in p.message
+
+
+def test_missing_places_file_flags_every_local_scope(repo):
+    repo.path("knowledge/places.yaml").unlink()
+    problems = check_content.check(repo.root)
+    assert sorted(rules(problems)) == ["C8 places"] * 3
+
+
+def test_unparseable_places_is_left_to_schema_check(repo):
+    repo.write("knowledge/places.yaml", "states: [\n")
+    assert set(rules(check_content.check(repo.root))) == {"C8 places"}
+
+
 def test_main_returns_zero_on_repo():
     assert check_content.main() == 0

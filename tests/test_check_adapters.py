@@ -82,7 +82,7 @@ def test_yes_without_evidence_fails(repo):
 
 
 def test_quoted_yes_without_evidence_fails(repo):
-    repo.write(ADAPTER, repo.path(ADAPTER).read_text().replace(
+    repo.write(ADAPTER, repo.path(ADAPTER).read_text(encoding="utf-8").replace(
         "fetch_url: unknown", 'fetch_url: "yes"'))
     assert rules(check_adapters.check(repo.root)) == ["A5 evidence"]
 

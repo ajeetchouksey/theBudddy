@@ -9,5 +9,8 @@ Python 3 tools used locally and in CI. Standard library + `pyyaml` + `jsonschema
 | `check_content.py` | Pack rules: sources, dates, reviewer, expiry |
 | `lint_skill.py` | Skill rules: no names, guardrail block, size budget |
 | `check_adapters.py` | Adapter rules: fallbacks, inheritance, freshness |
-| `build.py` | Packs, snapshot, skill zips, `latest.json` (task P3) |
+| `build.py` | Packs, resolved views, snapshot, skill zips, `latest.json` |
+| `fact_diff.py` | Old → new values of changed facts (PR comment) |
+| `check_links.py` | Checks `source_url` of changed facts |
+| `freshness.py` | Entries expiring soon, per layer (weekly issues) |
 | `run_evals.py` | Eval runner (task P10) |

@@ -1,0 +1,66 @@
+# Weekly: one open issue per layer listing entries that expire within 30 days.
+# Never blocks; expired entries are caught by validate and by the release workflow.
+name: freshness
+
+on:
+  schedule:
+    - cron: "17 6 * * 1" # Mondays 06:17 UTC
+  workflow_dispatch:
+
+permissions: read-all
+
+concurrency:
+  group: freshness
+  cancel-in-progress: false
+
+jobs:
+  freshness:
+    name: freshness
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install tools
+        run: python -m pip install -r requirements-dev.txt
+      - name: Find entries expiring within 30 days
+        run: python scripts/freshness.py --days 30 --issues > freshness.json
+      - name: Open, update or close one issue per layer
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require('fs');
+            const bodies = JSON.parse(fs.readFileSync('freshness.json', 'utf8'));
+            const { owner, repo } = context.repo;
+            const run = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const open = await github.paginate(github.rest.issues.listForRepo,
+              { owner, repo, state: 'open', per_page: 100 });
+            for (const [layer, text] of Object.entries(bodies)) {
+              const title = `Freshness: ${layer} pack entries expiring soon`;
+              const existing = open.find(i => !i.pull_request && i.title === title);
+              if (!text) {
+                if (existing) {
+                  await github.rest.issues.createComment({ owner, repo,
+                    issue_number: existing.number,
+                    body: `All ${layer} entries are fresh again ([run](${run})). Closing.` });
+                  await github.rest.issues.update({ owner, repo, issue_number: existing.number,
+                    state: 'closed', state_reason: 'completed' });
+                }
+                continue;
+              }
+              const body = `${text}\n_Updated by the [freshness workflow](${run})._\n`;
+              if (existing) {
+                await github.rest.issues.update({ owner, repo, issue_number: existing.number, body });
+              } else {
+                await github.rest.issues.create({ owner, repo, title, body });
+              }
+            }

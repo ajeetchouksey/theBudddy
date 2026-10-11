@@ -23,7 +23,7 @@ test:
 	@if [ -d node_modules ]; then npm test; else echo "skip: Apps Script tests (run npm install first)"; fi
 
 build:
-	$(PYTHON) scripts/build.py
+	$(PYTHON) scripts/build.py $(ROOT)
 
 evals-smoke:
 	$(PYTHON) scripts/run_evals.py --smoke

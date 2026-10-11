@@ -21,7 +21,7 @@ def test_every_schema_is_valid_draft_2020_12(repo):
 
 def test_targets_cover_every_kind(repo):
     kinds = {kind for _, kind in check_schemas.targets(repo.root)}
-    assert kinds == {"fact", "letter", "adapter", "eval", "latest"}
+    assert kinds == {"fact", "letter", "adapter", "eval", "latest", "places"}
 
 
 @pytest.mark.parametrize(
@@ -86,10 +86,10 @@ def test_bad_eval_case_fails(repo):
 
 def test_bad_latest_json_fails(repo):
     path = repo.path("site/latest.json")
-    data = json.loads(path.read_text())
+    data = json.loads(path.read_text(encoding="utf-8"))
     data["critical"] = {"message": "Something changed", "issued": "2026-10-10",
                         "incident": "https://github.com/example/1"}
-    path.write_text(json.dumps(data))
+    path.write_text(json.dumps(data), encoding="utf-8")
     problems = check_schemas.check(repo.root)
     assert rules(problems) == ["schema:latest.json"]
 
@@ -102,3 +102,8 @@ def test_parse_error_is_reported(repo):
 
 def test_main_returns_zero_on_repo(capsys):
     assert check_schemas.main() == 0
+
+
+def test_bad_places_fails(repo):
+    repo.edit("knowledge/places.yaml", lambda d: d["cities"]["testcity"].pop("state"))
+    assert rules(check_schemas.check(repo.root)) == ["schema:places.json"]

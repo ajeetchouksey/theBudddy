@@ -18,7 +18,7 @@ addopts = "-q"
 
 [tool.coverage.run]
 source = ["scripts"]
-omit = ["scripts/build.py", "scripts/run_evals.py"]
+omit = ["scripts/run_evals.py"]
 
 [tool.coverage.report]
 fail_under = 80

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ajeetchouksey/theBudddy/knowledge/_schema/places.json",
+  "title": "Places",
+  "description": "knowledge/places.yaml: the university -> city -> state chain used to resolve packs. Cross-references are checked by scripts/check_content.py (C8).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "states", "cities", "universities"],
+  "properties": {
+    "schema": { "const": 1 },
+    "states": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/slug" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": { "name": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "cities": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/slug" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "state"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "state": { "$ref": "#/$defs/slug" }
+        }
+      }
+    },
+    "universities": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/slug" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "city"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "city": { "$ref": "#/$defs/slug" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "slug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" }
+  }
+}

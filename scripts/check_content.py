@@ -9,6 +9,8 @@ Rules
   C5 layer and scope match the file's folder; id starts with <scope>.<topic>
   C6 ids are unique across all packs
   C7 depends_on points to an existing task_id
+  C8 every state, city and university scope is listed in knowledge/places.yaml, and each
+     city names a known state and each university a known city
 Structure is checked separately by check_schemas.py; malformed items are skipped here.
 """
 
@@ -23,6 +25,7 @@ if __package__ in (None, ""):
 from common import (  # noqa: E402
     LAYER_DIRS,
     NATIONAL_SCOPE,
+    PLACES,
     REPO_ROOT,
     SCHEMA_DIR,
     Problem,
@@ -76,6 +79,7 @@ class Checker:
         self.seen_ids: dict[str, str] = {}
         self.task_ids: set[str] = set()
         self.depends: list[tuple[str, str, str]] = []
+        self.scopes: set[tuple[str, str, str]] = set()
 
     def add(self, path, rule, message, fix="", entry_id=""):
         self.problems.append(Problem(path, rule, message, fix, entry_id))
@@ -139,6 +143,8 @@ class Checker:
     def pack(self, path: Path, data: dict) -> None:
         name = rel(path, self.root)
         exp_layer, exp_scope = expected_layer_scope(path, self.root)
+        if exp_layer and exp_scope:
+            self.scopes.add((name, exp_layer, exp_scope))
         for item in data.get("entries") or []:
             if not isinstance(item, dict) or not isinstance(item.get("id"), str):
                 continue
@@ -169,10 +175,44 @@ class Checker:
         if item_id:
             self.claim_id(name, item_id)
         exp_layer, exp_scope = expected_layer_scope(path, self.root)
+        if exp_layer and exp_scope:
+            self.scopes.add((name, exp_layer, exp_scope))
         self.layer_scope(path, name, data, item_id, exp_layer, exp_scope)
         self.common(name, data, item_id)
 
+    def places(self) -> None:
+        path = self.root / PLACES
+        name = PLACES.as_posix()
+        data = {}
+        if path.is_file():
+            try:
+                data = load_yaml(path) or {}
+            except Exception:  # reported by check_schemas.py
+                data = {}
+        if not isinstance(data, dict):
+            data = {}
+        known = {
+            "state": set((data.get("states") or {}).keys()),
+            "city": set((data.get("cities") or {}).keys()),
+            "university": set((data.get("universities") or {}).keys()),
+        }
+        for city, info in (data.get("cities") or {}).items():
+            state = (info or {}).get("state")
+            if state not in known["state"]:
+                self.add(name, "C8 places", f"city '{city}' names unknown state '{state}'",
+                         "Add the state under states:, or fix the name.")
+        for uni, info in (data.get("universities") or {}).items():
+            city = (info or {}).get("city")
+            if city not in known["city"]:
+                self.add(name, "C8 places", f"university '{uni}' names unknown city '{city}'",
+                         "Add the city under cities:, or fix the name.")
+        for file_name, layer, scope in sorted(self.scopes):
+            if layer in known and scope not in known[layer]:
+                self.add(file_name, "C8 places", f"{layer} '{scope}' is not in {name}",
+                         f"Add '{scope}' to {name} with its parent place.")
+
     def finish(self) -> list[Problem]:
+        self.places()
         for name, task_id, dep in self.depends:
             if dep not in self.task_ids:
                 self.add(name, "C7 depends_on", f"unknown task '{dep}'",
@@ -183,6 +223,8 @@ class Checker:
 def check(root: Path = REPO_ROOT) -> list[Problem]:
     checker = Checker(root)
     for path in yaml_files(root, "knowledge"):
+        if path == root / PLACES:
+            continue
         try:
             data = load_yaml(path)
         except Exception:  # reported by check_schemas.py
