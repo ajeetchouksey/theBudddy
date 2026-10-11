@@ -1,0 +1,20 @@
+# Semester fee (Semesterbeitrag) at CAU. Changes every semester: expires at the end of the
+# winter semester 2026/27, so the freshness workflow flags it before the summer fee applies.
+# Drafted with the pack-author skill. reviewer stays empty until a human checks each source.
+schema: 1
+entries:
+  - id: cau.semester-fee.amount
+    layer: university
+    scope: cau
+    topic: semester-fee
+    phase: 1
+    text: >-
+      The semester fee (Semesterbeitrag) for winter semester 2026/27 is 403 euros. It is
+      made up of: semester ticket 226.80 €, Studentenwerk (student services: canteens,
+      halls of residence, counselling) 89.00 €, university administrative fee 60.00 €,
+      student body (Studierendenschaft) 22.10 €, reimbursement contribution 3.20 € and
+      culture ticket 1.90 €.
+    source_url: https://asta.uni-kiel.de/en/service/semesterbeitrag/
+    last_verified: 2026-10-11
+    reviewer: ""
+    expires: 2027-03-31
