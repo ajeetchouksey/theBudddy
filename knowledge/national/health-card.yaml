@@ -1,0 +1,66 @@
+# Health card (elektronische Gesundheitskarte, eGK) for students with statutory insurance.
+# Drafted with the pack-author skill. reviewer stays empty until a human checks each source.
+schema: 1
+entries:
+  - id: de.health-card.what
+    layer: national
+    scope: de
+    topic: health-card
+    phase: 2
+    text: >-
+      With statutory (public) health insurance you get a health card (eGK = elektronische
+      Gesundheitskarte) from your insurer. It is proof that you are insured. A doctor's
+      practice usually reads it at your first visit in each quarter of the year.
+    source_url: https://gesund.bund.de/en/die-elektronische-gesundheitskarte
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.health-card.photo
+    layer: national
+    scope: de
+    topic: health-card
+    phase: 2
+    text: >-
+      If you are 15 or older, your health card shows your photo, so your insurer asks you for
+      a passport-style photo. Depending on the insurer, you can send it by post, hand it in at
+      an office, or upload it online.
+    source_url: https://verwaltung.bund.de/leistungsverzeichnis/de/leistung/99134056167000
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.health-card.processing
+    layer: national
+    scope: de
+    topic: health-card
+    phase: 2
+    text: >-
+      After the insurer has your photo, making the card usually takes about 4 to 7 working
+      days.
+    source_url: https://verwaltung.bund.de/leistungsverzeichnis/de/leistung/99134056167000
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.health-card.cost
+    layer: national
+    scope: de
+    topic: health-card
+    phase: 2
+    text: >-
+      The health card is usually free. An insurer can charge 5 euros for a new card only if
+      you caused the need for it yourself, for example by losing it.
+    source_url: https://verwaltung.bund.de/leistungsverzeichnis/de/leistung/99134056167000
+    last_verified: 2026-10-12
+    reviewer: ""
+
+tasks:
+  - task_id: de.health-card.send-photo
+    phase: 2
+    title: Send a photo for your health card
+    why: >-
+      Your insurer needs a passport-style photo to make your health card, which proves you are
+      insured at the doctor's. Send it the way your insurer's letter says.
+    depends_on:
+      - de.health-insurance.get-insured
+    source_url: https://verwaltung.bund.de/leistungsverzeichnis/de/leistung/99134056167000
+    last_verified: 2026-10-12
+    reviewer: ""
