@@ -1,0 +1,36 @@
+# Letter: your statutory health insurer asks for a photo for your health card (eGK).
+# Drafted with the pack-author skill. reviewer stays empty until a human checks the source.
+# senders.domains is empty on purpose: each insurer has its own domain; there is no shared list.
+schema: 1
+id: de.letters.health-card-photo
+layer: national
+scope: de
+phase: 2
+name: Letter from your health insurer asking for a photo (Lichtbild für die Gesundheitskarte)
+senders:
+  - name: Your statutory health insurer (Krankenkasse)
+    domains: []
+meaning: >-
+  Your health insurer is making your health card (eGK = elektronische Gesundheitskarte). Cards
+  for people aged 15 and over show a photo, so it asks you for a passport-style photo. The card
+  proves you are insured when you see a doctor.
+deadline_rule: >-
+  Send the photo by the date in the letter. If there is none, send it soon: your card is made
+  only after the insurer has your photo.
+next_step: >-
+  Send a passport-style photo the way the letter says: by post, at the insurer's office, or by
+  upload in the insurer's own app or website. Making the card then usually takes 4 to 7
+  working days.
+if_missed: >-
+  Your card is not made, so you have no card to show at the doctor's. Ask your insurer what
+  to use as proof of insurance until the card arrives.
+referral: >-
+  Your health insurer's service team, using the contact details on its official website or
+  on your insurance documents.
+scam_signs:
+  - Asks you to pay for your first card (the card is usually free)
+  - Asks for bank or card details to receive the card
+  - Upload link that does not lead to your insurer's own website or app
+source_url: https://verwaltung.bund.de/leistungsverzeichnis/de/leistung/99134056167000
+last_verified: 2026-10-12
+reviewer: ""
