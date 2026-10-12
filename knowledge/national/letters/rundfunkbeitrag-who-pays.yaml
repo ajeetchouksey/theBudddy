@@ -1,0 +1,40 @@
+# Letter: the Beitragsservice asks who pays the licence fee for your flat (after Anmeldung).
+# Drafted with the pack-author skill. reviewer stays empty until a human checks the source.
+# senders.domains is empty on purpose: this letter comes by post, and the Beitragsservice says
+# it does not send payment requests by email.
+schema: 1
+id: de.letters.rundfunkbeitrag-who-pays
+layer: national
+scope: de
+phase: 2
+name: Letter about the licence fee for your flat (Rundfunkbeitrag)
+senders:
+  - name: ARD ZDF Deutschlandradio Beitragsservice
+    domains: []
+meaning: >-
+  The Beitragsservice gets your new address from the registration office. It could not match
+  your flat to anyone who already pays, so it asks you to say who pays the licence fee for
+  your flat. It is not a bill or a fine.
+deadline_rule: >-
+  Answer by the date printed on the letter. If there is none, answer soon: without an answer
+  you are usually registered automatically from the day you moved in.
+next_step: >-
+  If a flatmate already pays, answer online with their 9-digit Beitragsnummer (contribution
+  number). If nobody pays yet, agree who will, and that person registers the flat online. If
+  you receive BAföG, you can apply for an exemption. Use the forms on rundfunkbeitrag.de, not
+  links in an email.
+if_missed: >-
+  The Beitragsservice usually registers you automatically, back-dated to your move-in date,
+  and bills you. You can still tell it later that a flatmate pays, or apply for an exemption.
+referral: >-
+  Questions about your account: the Beitragsservice, using the contact details on
+  rundfunkbeitrag.de. Money worries: your university's social counselling.
+scam_signs:
+  - Asks you to pay by email, or offers a discount for paying early
+  - Bank account abroad, or a contribution number that is not yours
+  - Starts with "Dear Sir or Madam" instead of your name
+  - Asks you to ignore your bank's payee-check warning
+  - Calendar (.ics) files or other attachments to download
+source_url: https://www.rundfunkbeitrag.de/buergerinnen-und-buerger/informationen/informationen-zum-meldedatenabgleich
+last_verified: 2026-10-12
+reviewer: ""

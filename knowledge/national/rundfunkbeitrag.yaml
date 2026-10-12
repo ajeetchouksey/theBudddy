@@ -1,0 +1,120 @@
+# Rundfunkbeitrag (licence fee for public TV and radio) — national rules from the Beitragsservice.
+# A fee rise to 18.94 euros is recommended but not in force (court decision pending), so the
+# amount entry expires early for re-checking.
+# Drafted with the pack-author skill. reviewer stays empty until a human checks each source.
+schema: 1
+entries:
+  - id: de.rundfunkbeitrag.amount
+    layer: national
+    scope: de
+    topic: rundfunkbeitrag
+    phase: 2
+    text: >-
+      The Rundfunkbeitrag (licence fee for public TV and radio) is 18.36 euros a month.
+      It is paid per flat, not per person, and whether or not you own a TV or radio.
+    source_url: https://www.rundfunkbeitrag.de/buergerinnen-und-buerger/informationen/zahlung
+    last_verified: 2026-10-12
+    reviewer: ""
+    expires: 2027-01-31
+
+  - id: de.rundfunkbeitrag.shared-flat
+    layer: national
+    scope: de
+    topic: rundfunkbeitrag
+    phase: 2
+    text: >-
+      In a shared flat (WG = Wohngemeinschaft), only one person has to register and pay for
+      the whole flat. The others give that person's 9-digit Beitragsnummer (contribution
+      number) when the Beitragsservice asks. Flatmates can split the cost between themselves.
+    source_url: https://www.rundfunkbeitrag.de/welcome/english/students-and-apprentices
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.rundfunkbeitrag.student-hall
+    layer: national
+    scope: de
+    topic: rundfunkbeitrag
+    phase: 2
+    text: >-
+      In a student hall, a room that opens onto a shared hallway counts as its own flat, so
+      the fee is due for that room. If several rooms share one front door, the shared-flat
+      rule applies instead.
+    source_url: https://www.rundfunkbeitrag.de/welcome/english/students-and-apprentices
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.rundfunkbeitrag.bafoeg-exemption
+    layer: national
+    scope: de
+    topic: rundfunkbeitrag
+    phase: 2
+    text: >-
+      If you receive BAföG (German student financial aid) and do not live with your parents,
+      you can apply for an exemption. The exemption does not cover your flatmates, so the flat
+      still pays unless everyone in it qualifies.
+    source_url: https://www.rundfunkbeitrag.de/welcome/english/students-and-apprentices
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.rundfunkbeitrag.letter-after-registration
+    layer: national
+    scope: de
+    topic: rundfunkbeitrag
+    phase: 2
+    text: >-
+      The Beitragsservice gets address data from the registration office. A few days or weeks
+      after your Anmeldung (address registration), you may get a letter asking who pays for
+      your flat. You must answer it, even if a flatmate already pays.
+    source_url: https://www.rundfunkbeitrag.de/presse-und-aktuelles/servicethemen/was-gilt-fuer-studierende-und-auszubildende-beim-rundfunkbeitrag
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.rundfunkbeitrag.no-answer
+    layer: national
+    scope: de
+    topic: rundfunkbeitrag
+    phase: 2
+    text: >-
+      If you do not answer the Beitragsservice's letter, it usually registers you
+      automatically, back-dated to the day you moved in. Then you can still tell it that a
+      flatmate pays, or apply for an exemption.
+    source_url: https://www.rundfunkbeitrag.de/buergerinnen-und-buerger/informationen/informationen-zum-meldedatenabgleich
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.rundfunkbeitrag.late-payment
+    layer: national
+    scope: de
+    topic: rundfunkbeitrag
+    phase: 3
+    text: >-
+      If you do not pay, the Beitragsservice sends a Festsetzungsbescheid (formal payment
+      notice) with a late fee of 1 percent of what you owe, at least 8 euros. More fees can
+      follow if you still do not pay.
+    source_url: https://www.rundfunkbeitrag.de/buergerinnen-und-buerger/informationen/zahlung
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.rundfunkbeitrag.no-email-payment
+    layer: national
+    scope: de
+    topic: rundfunkbeitrag
+    phase: 2
+    text: >-
+      The Beitragsservice does not send payment requests by email and does not offer discounts
+      for paying early. Emails like that are fraud: do not pay and do not open attachments.
+    source_url: https://www.rundfunkbeitrag.de/presse-und-aktuelles/sicherheitshinweise/betruegerische-e-mails-mit-zahlungsterminen
+    last_verified: 2026-10-12
+    reviewer: ""
+
+tasks:
+  - task_id: de.rundfunkbeitrag.sort-out
+    phase: 2
+    title: Sort out the Rundfunkbeitrag for your flat
+    why: >-
+      Every flat pays one licence fee. Agree with your flatmates who pays, then register
+      online, or answer the Beitragsservice letter with that person's Beitragsnummer.
+    depends_on: []
+    source_url: https://www.rundfunkbeitrag.de/welcome/english/students-and-apprentices
+    last_verified: 2026-10-12
+    reviewer: ""
