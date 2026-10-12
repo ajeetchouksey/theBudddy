@@ -1,0 +1,66 @@
+# Tax identification number (Steuer-ID / IdNr) — national rules from the Federal Central Tax
+# Office (Bundeszentralamt für Steuern, BZSt). bzst.de is added to the source allowlist in this PR.
+# Drafted with the pack-author skill. reviewer stays empty until a human checks each source.
+schema: 1
+entries:
+  - id: de.tax-id.what
+    layer: national
+    scope: de
+    topic: tax-id
+    phase: 3
+    text: >-
+      Your tax ID (Steuerliche Identifikationsnummer, also called Steuer-ID or IdNr) is an
+      11-digit number. It is yours for life: it does not change when you move or change your
+      name.
+    source_url: https://www.bzst.de/EN/Private_individuals/Tax_identification_number/tax_identification_number_node.html
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.tax-id.sent-by-post
+    layer: national
+    scope: de
+    topic: tax-id
+    phase: 3
+    text: >-
+      You do not apply for it. After your first Anmeldung (address registration), the
+      registration office sends your data to the Federal Central Tax Office (BZSt), which then
+      sends your tax ID to you by post.
+    source_url: https://www.bzst.de/EN/Private_individuals/Tax_identification_number/FAQ/faq_tin_node.html
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.tax-id.employer
+    layer: national
+    scope: de
+    topic: tax-id
+    phase: 3
+    text: >-
+      Employers must report tax data about you to the tax office, so they ask for your tax ID
+      when you start a job, including a student job. Keep the letter safe.
+    source_url: https://www.bzst.de/EN/Private_individuals/Tax_identification_number/FAQ/faq_tin_node.html
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.tax-id.not-received
+    layer: national
+    scope: de
+    topic: tax-id
+    phase: 3
+    text: >-
+      If your tax ID has not arrived 3 months after your Anmeldung, or you lost the letter,
+      ask the BZSt to send it again, using the form on its website or by letter.
+    source_url: https://www.bzst.de/EN/Private_individuals/Tax_identification_number/FAQ/faq_tin_node.html
+    last_verified: 2026-10-12
+    reviewer: ""
+
+  - id: de.tax-id.no-phone-email
+    layer: national
+    scope: de
+    topic: tax-id
+    phase: 3
+    text: >-
+      The BZSt does not give out your tax ID by phone or email, for data protection. It only
+      sends it by post.
+    source_url: https://online.portal.bzst.de/SharedDocs/Leistungsbeschreibung/EN/erneute_mitteilung_der_ID-Nr.html
+    last_verified: 2026-10-12
+    reviewer: ""

@@ -1,0 +1,33 @@
+# Letter: the Federal Central Tax Office sends your tax ID after your first Anmeldung.
+# Drafted with the pack-author skill. reviewer stays empty until a human checks the source.
+# senders.domains is empty on purpose: the tax ID is sent only by post.
+schema: 1
+id: de.letters.tax-id
+layer: national
+scope: de
+phase: 3
+name: Letter with your tax ID (Steuerliche Identifikationsnummer)
+senders:
+  - name: Bundeszentralamt für Steuern (Federal Central Tax Office, BZSt)
+    domains: []
+meaning: >-
+  This letter tells you your tax ID: an 11-digit number that is yours for life. It comes
+  automatically some time after your first Anmeldung (address registration). It is not a bill
+  and does not ask you to do anything.
+deadline_rule: >-
+  No reply is needed. Keep the letter safe: you will need the number when you start a job.
+next_step: >-
+  Save the number somewhere safe (not in a chat or a public file). Give it to your employer
+  when you start a job, including a student job.
+if_missed: >-
+  If the letter has not arrived 3 months after your Anmeldung, or you lost it, ask the BZSt to
+  send it again with the form on bzst.de or by letter. It is never given by phone or email.
+referral: >-
+  The Federal Central Tax Office (BZSt), using the form and contact details on bzst.de.
+scam_signs:
+  - Someone calls or emails you about your tax ID (the BZSt only sends it by post)
+  - Asks you to pay money or give bank or card details to receive the number
+  - Asks you to send your tax ID by email or message to a stranger
+source_url: https://www.bzst.de/EN/Private_individuals/Tax_identification_number/FAQ/faq_tin_node.html
+last_verified: 2026-10-12
+reviewer: ""
