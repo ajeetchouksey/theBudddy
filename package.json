@@ -9,7 +9,7 @@
     "format:check": "prettier --check --no-error-on-unmatched-pattern \"apps-script/**/*.{js,html}\" \"spike/**/*.js\" \"skill/reference/*.html\""
   },
   "devDependencies": {
-    "prettier": "3.9.9",
-    "vitest": "5.0.3"
+    "prettier": "3.9.10",
+    "vitest": "5.0.4"
   }
 }
